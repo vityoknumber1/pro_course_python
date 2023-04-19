@@ -12,14 +12,13 @@ def find_in_file(file_name: str, pattern: str):
                 if not line:
                     break
                 if pattern in line:
-                    output.write(line+"\n")
+                    output.write(line + "\n")
                     yield line
         with open("./lesson3/results.txt", "r", encoding="utf-8") as fp:
             lines = len(fp.readlines())
-            print('Total number of lines:', lines)
+            print("Total number of lines:", lines)
 
 
-print(asizeof.asized(list(find_in_file(
-    file_name="./lesson3/rockyou.txt",
-    pattern=word
-)), detail=1).format())
+t = list(find_in_file(file_name="./lesson3/rockyou.txt", pattern=word))
+
+print(asizeof.asized(t, detail=1).format())
