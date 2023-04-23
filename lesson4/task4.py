@@ -26,8 +26,8 @@ def players_del(players: list[dict], name: str) -> list[dict]:
 
 
 def players_find(players: list[dict], field: str, value: Any) -> list[dict]:
-    res = next((d for d in players if d.get(field) == value),
-               [{} for _ in range(1)])
+    res = next((d for d in players
+                if d.get(field) == value), [{} for _ in range(1)])
     print(res)
 
 
