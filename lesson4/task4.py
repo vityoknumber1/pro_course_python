@@ -26,9 +26,8 @@ def players_del(players: list[dict], name: str) -> list[dict]:
 
 
 def players_find(players: list[dict], field: str, value: Any) -> list[dict]:
-    res = next((d for d in players
-                if d.get(field) == value), [{} for _ in range(1)])
-    print(res)
+    res = next((d for d in players if d.get(field) == value), [{} for _ in range(1)])
+    return res
 
 
 def players_get_by_name(players: list[dict], name: str) -> dict | None:
@@ -87,8 +86,7 @@ def main():
                 player_values = dict(
                     input(
                         "Enter field and value for searching with space: "
-                    ).split()
-                    for _ in range(1)
+                    ).split()  for _ in range(1)
                 )
                 players_find(
                     team, list(player_values.keys())[0],
