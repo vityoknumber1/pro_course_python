@@ -3,8 +3,7 @@ from datetime import datetime, timedelta
 from time import sleep
 
 
-# each social channel has a type
-# and the current number of followers
+# each social channel has a type and the current number of followers
 class SocialChannel(ABC):  # = tuple[str, int] =
     @abstractmethod
     def channel_name(self):
