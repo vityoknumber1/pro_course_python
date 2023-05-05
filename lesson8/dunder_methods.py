@@ -40,15 +40,13 @@ class Price:
         price_in_usd = (
             self
             if Curr.USD == self.currency
-            else Price(self.amount_cur / exchange_rates[self.currency],
-                       Curr.USD)
+            else Price(self.amount_cur / exchange_rates[self.currency], Curr.USD)
         )
         return (
             price_in_usd
             if other_currency == price_in_usd.currency
             else Price(
-                price_in_usd.amount_cur * exchange_rates[other_currency],
-                other_currency
+                price_in_usd.amount_cur * exchange_rates[other_currency], other_currency
             )
         )
 

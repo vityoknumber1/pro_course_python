@@ -26,8 +26,9 @@ def players_del(players: list[dict], name: str) -> list[dict]:
 
 
 def players_find(players: list[dict], field: str, value: Any) -> list[dict]:
-    res = next((d for d in players if d.get(field) == value),
-               [{} for _ in range(1)])
+    res = next(
+        (d for d in players if d.get(field) == value), [{}]
+    )  # [{} for _ in range(1)])
     return res
 
 
@@ -72,8 +73,7 @@ def main():
                 name: str
                 print("Adding player\n")
                 player_new = dict(
-                    input("Enter name and age with space: ").split()
-                    for _ in range(2)
+                    input("Enter name and age with space: ").split() for _ in range(2)
                 )
                 players_add(team, player_new)
 
@@ -85,13 +85,11 @@ def main():
             case "find":
                 print("Finding player\n")
                 player_values = dict(
-                    input(
-                        "Enter field and value for searching with space: "
-                    ).split() for _ in range(1)
+                    input("Enter field and value for searching with space: ").split()
+                    for _ in range(1)
                 )
                 players_find(
-                    team, list(player_values.keys())[0],
-                    list(player_values.values())[0]
+                    team, list(player_values.keys())[0], list(player_values.values())[0]
                 )
 
             case "get":
