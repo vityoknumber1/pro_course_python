@@ -36,7 +36,7 @@ class Price:
     def amount(self, value: float) -> None:
         self.__amount = value
 
-    def convert_cur(self, other_curr: Curr):
+    def convert_cur(self, other_c: Curr):
         price_in_usd = (
             self
             if Curr.USD == self.currency
@@ -44,8 +44,8 @@ class Price:
         )
         return (
             price_in_usd
-            if other_curr == price_in_usd.currency
-            else Price(price_in_usd.amount * exchange_rates[other_curr], other_curr)
+            if other_c == price_in_usd.currency
+            else Price(price_in_usd.amount * exchange_rates[other_c], other_c)
         )
 
     def __add__(self, other):
