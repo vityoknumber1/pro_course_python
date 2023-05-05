@@ -45,9 +45,7 @@ class Price:
         return (
             price_in_usd
             if other_curr == price_in_usd.currency
-            else Price(
-                price_in_usd.amount * exchange_rates[other_curr], other_curr
-            )
+            else Price(price_in_usd.amount * exchange_rates[other_curr], other_curr)
         )
 
     def __add__(self, other):
