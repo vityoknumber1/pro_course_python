@@ -73,7 +73,11 @@ def main():
                 name: str
                 print("Adding player\n")
                 player_new = dict(
-                    input("Enter name and age with space: ").split() for _ in range(2)
+                    input(
+                        "Enter name and\
+                          age with space: "
+                    ).split()
+                    for _ in range(2)
                 )
                 players_add(team, player_new)
 
@@ -84,13 +88,14 @@ def main():
 
             case "find":
                 print("Finding player\n")
-                player_values = dict(
-                    input("Enter field and value for searching with space: ").split()
+                player = dict(
+                    input(
+                        "Enter field and\
+                          value for searching with space: "
+                    ).split()
                     for _ in range(1)
                 )
-                players_find(
-                    team, list(player_values.keys())[0], list(player_values.values())[0]
-                )
+                players_find(team, list(player.keys()), list(player.values()))
 
             case "get":
                 name = input("Enter name of player: ")

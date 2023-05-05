@@ -25,28 +25,28 @@ class Price:
         self.__currency: Curr = currency
 
     @property
-    def amount_cur(self) -> float:
+    def amount(self) -> float:
         return self.__amount
 
     @property
     def currency(self) -> Curr:
         return self.__currency
 
-    @amount_cur.setter
-    def amount_cur(self, value: float) -> None:
+    @amount.setter
+    def amount(self, value: float) -> None:
         self.__amount = value
 
-    def convert_cur(self, other_currency: Curr):
+    def convert_cur(self, other_curr: Curr):
         price_in_usd = (
             self
             if Curr.USD == self.currency
-            else Price(self.amount_cur / exchange_rates[self.currency], Curr.USD)
+            else Price(self.amount / exchange_rates[self.currency], Curr.USD)
         )
         return (
             price_in_usd
-            if other_currency == price_in_usd.currency
+            if other_curr == price_in_usd.currency
             else Price(
-                price_in_usd.amount_cur * exchange_rates[other_currency], other_currency
+                price_in_usd.amount * exchange_rates[other_curr], other_curr
             )
         )
 
@@ -58,7 +58,7 @@ class Price:
         another = other
         if self.currency != other.currency:
             another = other.convert_cur(self.currency)
-        return Price(self.amount_cur + another.amount_cur, self.currency)
+        return Price(self.amount + another.amount, self.currency)
 
     def __sub__(self, other):
         if other is None:
@@ -68,7 +68,7 @@ class Price:
         another = other
         if self.currency != other.currency:
             another = other.convert_cur(self.currency)
-        return Price(self.amount_cur - another.amount_cur, self.currency)
+        return Price(self.amount - another.amount, self.currency)
 
     def __str__(self):
         return f"{self.__amount:0.2f} {self.currency}"
